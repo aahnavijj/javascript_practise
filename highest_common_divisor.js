@@ -26,18 +26,19 @@ console.log(res, "res here")
 
 
 //optimal solution (Euclidean algorithm)
-let num11 = 15;
-let num22 = 12;
-const cal = ()=>{
-   while(num11!= num22){
-    if(num11>num22){
-        num11 = num11-num22
+let a = 15;
+let b = 12;
+const cal = (a,b)=>{
+    if(b === 0){
+        return a
     }else{
-        num22 = num22 - num11
+        return cal(b, a%b)
     }
-}
-return num11
+   
 }
 
 
-console.log(cal())
+console.log(cal(a,b))
+
+
+
