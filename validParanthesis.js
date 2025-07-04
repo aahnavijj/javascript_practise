@@ -1,22 +1,24 @@
-const string = "({[]})";
-let mapping = { ')': '(', '}': '{', ']': '[' }; // Closing to Opening match
- let stack = [];
+const str = "(a+b)*(c+d)";
+const obj = {
+    ")": "(",
+    "]": "[",
+    "}": "{"
+    
+}
+const newArr = []
 
-const checkValidString = () => {
-    for (let char of string){
-       
-        if(char in mapping){
-            if(stack.length>0 && mapping[char] === stack[stack.length-1]){
-                stack.pop()
-            }else{
-                return false;
-            }
-        }else{
-            stack.push(char)
+
+const balancedParanthesis = (str)=>{
+    for(let i=0; i<str.length; i++){
+        if(('([{').includes(str[i])){
+            newArr.push(str[i])
+        }else if((')]}').includes(str[i])){
+           if (newArr.pop() !== obj[str[i]]) return false
+            
         }
     }
-    return stack.length === 0
+    return newArr.length === 0
     
 }
 
-console.log(checkValidString())
+console.log(balancedParanthesis(str))
